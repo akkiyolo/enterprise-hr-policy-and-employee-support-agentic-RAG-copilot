@@ -24,6 +24,7 @@ def llm():
         _llm = ChatGroq(
             model=settings.openai_model,
             temperature=0,
+            max_tokens=1000,
             api_key=settings.groq_api_key,
         )
     return _llm

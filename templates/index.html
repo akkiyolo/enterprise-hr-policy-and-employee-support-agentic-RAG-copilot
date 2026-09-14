@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>{{ app_name }}</title>
+
+  <meta
+    name="description"
+    content="AI-powered HR knowledge copilot with grounded agentic retrieval."
+  />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+
+<body>
+
+  <div class="app-shell">
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================== -->
+
+    <aside class="sidebar">
+
+      <div class="sidebar-top">
+
+        <div class="brand">
+          <div class="brand-mark">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <div class="brand-copy">
+            <span class="brand-name">FDE</span>
+            <span class="brand-label">Knowledge Systems</span>
+          </div>
+        </div>
+
+
+        <div class="product-heading">
+
+          <div class="product-eyebrow">
+            <span class="eyebrow-line"></span>
+            INTERNAL TOOL
+          </div>
+
+          <h1>
+            HR Policy
+            <span>Copilot</span>
+          </h1>
+
+          <p>
+            A private-first AI assistant for company policies,
+            employee support, and grounded HR knowledge.
+          </p>
+
+        </div>
+
+
+        <div class="workflow">
+
+          <div class="section-label">
+            <span>AGENT WORKFLOW</span>
+            <span class="workflow-status">
+              <i></i>
+              ACTIVE
+            </span>
+          </div>
+
+
+          <div class="workflow-line"></div>
+
+
+          <div class="workflow-step">
+            <div class="step-number">01</div>
+            <div class="step-content">
+              <strong>Route question</strong>
+              <span>Determine the best knowledge path</span>
+            </div>
+          </div>
+
+          <div class="workflow-step">
+            <div class="step-number">02</div>
+            <div class="step-content">
+              <strong>Retrieve private KB</strong>
+              <span>Search company HR knowledge</span>
+            </div>
+          </div>
+
+          <div class="workflow-step">
+            <div class="step-number">03</div>
+            <div class="step-content">
+              <strong>Grade evidence</strong>
+              <span>Evaluate retrieval confidence</span>
+            </div>
+          </div>
+
+          <div class="workflow-step">
+            <div class="step-number">04</div>
+            <div class="step-content">
+              <strong>Web fallback</strong>
+              <span>Use external evidence when needed</span>
+            </div>
+          </div>
+
+          <div class="workflow-step">
+            <div class="step-number">05</div>
+            <div class="step-content">
+              <strong>Rewrite & retry</strong>
+              <span>Improve weak retrieval queries</span>
+            </div>
+          </div>
+
+          <div class="workflow-step">
+            <div class="step-number final">06</div>
+            <div class="step-content">
+              <strong>Grounded answer</strong>
+              <span>Return evidence-backed results</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="sidebar-bottom">
+
+        <div class="privacy-note">
+          <div class="privacy-icon">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path
+                d="M12 3L19 6V11.5C19 16.2 16.1 19.4 12 21C7.9 19.4 5 16.2 5 11.5V6L12 3Z"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+              <path
+                d="M9 12L11 14L15 10"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+
+          <div>
+            <strong>Private-first retrieval</strong>
+            <span>Company knowledge is always preferred.</span>
+          </div>
+        </div>
+
+
+        <button id="openUpload" class="upload-document-btn">
+
+          <span class="upload-icon">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path
+                d="M12 16V4"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+              />
+              <path
+                d="M8 8L12 4L16 8"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M5 13V18C5 19.1 5.9 20 7 20H17C18.1 20 19 19.1 19 18V13"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+              />
+            </svg>
+          </span>
+
+          <span>
+            <strong>Add HR document</strong>
+            <small>PDF, DOCX, TXT, Markdown</small>
+          </span>
+
+          <span class="button-arrow">→</span>
+
+        </button>
+
+      </div>
+
+    </aside>
+
+
+    <!-- =========================================
+         MAIN CHAT
+    ========================================== -->
+
+    <main class="main">
+
+      <header class="topbar">
+
+        <div class="topbar-left">
+
+          <div class="online-indicator">
+            <span></span>
+          </div>
+
+          <div class="topbar-title">
+            <strong>Employee Knowledge Copilot</strong>
+            <span>Ready to assist</span>
+          </div>
+
+        </div>
+
+
+        <div class="topbar-right">
+
+          <div class="system-pill">
+            <span class="system-dot"></span>
+            Agentic RAG
+          </div>
+
+          <div class="model-pill">
+            <span class="model-icon">AI</span>
+            <span>Grounded</span>
+          </div>
+
+        </div>
+
+      </header>
+
+
+      <section id="chat" class="chat-area">
+
+        <!-- Initial assistant message -->
+
+        <div class="welcome-state">
+
+          <div class="welcome-icon">
+            <div class="welcome-icon-inner">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+
+
+          <div class="welcome-content">
+
+            <div class="message-label">
+              <span class="assistant-name">HR Copilot</span>
+              <span class="message-time">NOW</span>
+            </div>
+
+            <h2>
+              What can I help you find?
+            </h2>
+
+            <p>
+              Ask about company policies, benefits, leave, remote work,
+              employee processes, or information that may require
+              current external sources.
+            </p>
+
+          </div>
+
+
+          <div class="suggestion-grid">
+
+            <button class="suggestion-card example">
+
+              <span class="suggestion-icon">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <rect
+                    x="5"
+                    y="3"
+                    width="14"
+                    height="18"
+                    rx="2"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    d="M8 8H16M8 12H16M8 16H13"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </span>
+
+              <span>
+                <strong>Annual leave policy</strong>
+                <small>How many annual leave days do employees receive?</small>
+              </span>
+
+              <span class="suggestion-arrow">↗</span>
+
+            </button>
+
+
+            <button class="suggestion-card example">
+
+              <span class="suggestion-icon">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M4 7H20M7 4V7M17 4V7M6 11H10M14 11H18M6 15H10M14 15H18M6 19H10"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                  <rect
+                    x="4"
+                    y="5"
+                    width="16"
+                    height="15"
+                    rx="2"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  />
+                </svg>
+              </span>
+
+              <span>
+                <strong>Remote work policy</strong>
+                <small>What is our current remote work policy?</small>
+              </span>
+
+              <span class="suggestion-arrow">↗</span>
+
+            </button>
+
+
+            <button class="suggestion-card example">
+
+              <span class="suggestion-icon">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="8"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    d="M12 8V12L15 14"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+
+              <span>
+                <strong>Current regulations</strong>
+                <small>What are the latest public holiday rules in India?</small>
+              </span>
+
+              <span class="suggestion-arrow">↗</span>
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================================
+           COMPOSER
+      ========================================== -->
+
+      <section class="composer-section">
+
+        <form id="chatForm" class="composer">
+
+          <div class="composer-input">
+
+            <textarea
+              id="question"
+              rows="1"
+              placeholder="Ask about HR policies, benefits, leave..."
+              required
+            ></textarea>
+
+            <div class="input-meta">
+              <span>Private company knowledge first</span>
+              <span class="keyboard-hint">
+                <kbd>Enter</kbd>
+                <span>to send</span>
+              </span>
+            </div>
+
+          </div>
+
+
+          <button type="submit" class="send-btn">
+
+            <span>Ask agent</span>
+
+            <svg viewBox="0 0 24 24" fill="none">
+              <path
+                d="M5 12H19"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+              />
+              <path
+                d="M13 6L19 12L13 18"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+
+          </button>
+
+        </form>
+
+        <p class="composer-disclaimer">
+          AI-generated responses can be imperfect. Verify important HR decisions against official company policy.
+        </p>
+
+      </section>
+
+    </main>
+
+
+    <!-- =========================================
+         TRACE PANEL
+    ========================================== -->
+
+    <aside class="trace-panel">
+
+      <div class="trace-header">
+
+        <div>
+
+          <div class="trace-eyebrow">
+            <span class="trace-live-dot"></span>
+            LIVE SYSTEM
+          </div>
+
+          <h2>Agent trace</h2>
+
+          <p>
+            Follow the reasoning pipeline as your request moves through the system.
+          </p>
+
+        </div>
+
+        <div class="trace-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+      </div>
+
+
+      <div class="trace-divider"></div>
+
+
+      <div class="trace-label-row">
+        <span>EXECUTION</span>
+        <span id="traceStatus">IDLE</span>
+      </div>
+
+
+      <div id="trace" class="trace-list">
+
+        <div class="trace-empty">
+
+          <div class="trace-empty-icon">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path
+                d="M12 3V7M12 17V21M3 12H7M17 12H21"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+              <circle
+                cx="12"
+                cy="12"
+                r="4"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+            </svg>
+          </div>
+
+          <strong>No request yet</strong>
+
+          <span>
+            Agent execution steps will appear here.
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="source-card">
+
+        <div class="source-card-header">
+
+          <span>FINAL SOURCE</span>
+
+          <span class="source-status">
+            <i></i>
+            GROUNDED
+          </span>
+
+        </div>
+
+        <strong id="sourceUsed">—</strong>
+
+        <div class="source-card-line"></div>
+
+        <span class="source-description">
+          The source selected by the agent for the final response.
+        </span>
+
+      </div>
+
+    </aside>
+
+  </div>
+
+
+  <!-- =========================================
+       UPLOAD MODAL
+  ========================================== -->
+
+  <div id="uploadModal" class="modal hidden">
+
+    <div class="modal-backdrop"></div>
+
+    <div class="modal-card">
+
+      <div class="modal-head">
+
+        <div class="modal-title-group">
+
+          <div class="modal-icon">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path
+                d="M12 16V4"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+              />
+              <path
+                d="M8 8L12 4L16 8"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M5 13V18C5 19.1 5.9 20 7 20H17C18.1 20 19 19.1 19 18V13"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
+
+          <div>
+            <span class="modal-eyebrow">KNOWLEDGE INGESTION</span>
+            <h2>Index HR document</h2>
+          </div>
+
+        </div>
+
+
+        <button id="closeUpload" class="modal-close" aria-label="Close">
+          ×
+        </button>
+
+      </div>
+
+
+      <p class="modal-description">
+        Add a company HR document to the private knowledge base.
+        The document will be chunked, embedded, and indexed into Pinecone.
+      </p>
+
+
+      <div class="form-field">
+
+        <label for="adminKey">ADMIN API KEY</label>
+
+        <input
+          id="adminKey"
+          type="password"
+          placeholder="Enter admin key"
+        />
+
+      </div>
+
+
+      <div class="form-field">
+
+        <label for="fileInput">DOCUMENT</label>
+
+        <label class="file-drop" for="fileInput">
+
+          <input
+            id="fileInput"
+            type="file"
+            accept=".pdf,.txt,.md,.docx"
+          />
+
+          <div class="file-drop-icon">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path
+                d="M7 3H14L19 8V20C19 20.6 18.6 21 18 21H7C6.4 21 6 20.6 6 20V4C6 3.4 6.4 3 7 3Z"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+              <path
+                d="M13 3V9H19"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+              <path
+                d="M9 13H15M9 16H13"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
+
+          <div class="file-drop-text">
+            <strong>Choose a document</strong>
+            <span>PDF, DOCX, TXT or Markdown</span>
+          </div>
+
+          <span class="file-browse">Browse</span>
+
+        </label>
+
+      </div>
+
+
+      <button id="uploadBtn" class="modal-upload-btn">
+
+        <span>Index document</span>
+
+        <svg viewBox="0 0 24 24" fill="none">
+          <path
+            d="M5 12H19"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+          />
+          <path
+            d="M13 6L19 12L13 18"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+
+      </button>
+
+
+      <div id="uploadStatus" class="upload-status"></div>
+
+    </div>
+
+  </div>
+
+
+  <script src="/static/js/app.js"></script>
+
+</body>
+</html>
